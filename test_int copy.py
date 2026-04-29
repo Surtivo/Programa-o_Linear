@@ -14,7 +14,6 @@ for t in range(T):
     h.changeColCost(t, float(c))       
     h.changeColCost(t + T, float(n))   
 
-
 for t in range(T):
 
     indices_x = list(range(max(0, t-19), t + 1))

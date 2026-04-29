@@ -1,6 +1,5 @@
 # Programação_Linear
 
-## Junção de testes e algoritmos usados na disciplina de Programação Linear:
 Junção de testes e algoritmos usados na disciplina de Programação Linear. Usado a biblioteca HiGHS para python.
 
 ### Observações:

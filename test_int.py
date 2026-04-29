@@ -12,7 +12,8 @@ h.addVar(0.0, highspy.kHighsInf)
 h.addVar(0.0, highspy.kHighsInf)
 
 for i in range(7):
-    h.changeColIntegrality(i, highspy.HighsVarType.kInteger)
+    h.changeColIntegrality(i, highspy.HighsVarType.kInteger)    
+    #Para conter soluções inteiras;
 
 h.changeColCost(0, 1.0)
 h.changeColCost(1, 1.0)
