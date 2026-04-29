@@ -1,11 +1,11 @@
 import highspy
 
 h = highspy.Highs()
-T = 20  # Exemplo de horizonte de tempo
-c = 100 # Custo unitário x
-n = 60 # Custo unitário y
-d = [500] * T # Demanda (exemplo)
-e = [120] * T # Capacidade existente (exemplo)
+T = 20  #Exemplo de horizonte de tempo;
+c = 100 #Custo unitário x;
+n = 60 #Custo unitário y;
+d = [500] * T #Demanda (exemplo);
+e = [120] * T #Capacidade existente (exemplo);
 
 #Criar Variáveis. Como temos 4 variáveis por período, o total é 4*T;
 for t in range(4 * T):
