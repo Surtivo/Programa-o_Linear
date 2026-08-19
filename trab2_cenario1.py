@@ -1,0 +1,36 @@
+import highspy
+import numpy as np
+
+T = 22
+c  = [5, 5, 7, 12.9, 26.9, 49.4, 38.7, 85, 81.12, 48, 39.6, 5, 19, 5, 25.8, 156.87, 90, 12.9, 7.92, 289, 289, 13.9]
+g  = [640, 630, 1512, 13950, 112404, 20160, 15876, 30618, 5985, 560, 4851, 7942, 12060, 33840, 11232, 10800]
+k  = [560, 1458, 1458, 40824, 40824, 7830]
+fc = [3, 3.5, 5, 7, 18.8, 36.4, 24, 34, 48, 40, 24, 3, 16, 2, 14, 113.4, 70, 8, 5.56, 200, 200, 10]
+
+h = highspy.Highs()
+h.changeObjectiveSense(highspy.ObjSense.kMaximize)
+
+for t in range(T):
+    h.addVar(0.0, highspy.kHighsInf)
+    h.changeColIntegrality(t, highspy.HighsVarType.kInteger)
+
+for t in range(T):
+    h.changeColCost(t, float(c[t]))
+
+# 3. Adicionar as restrições
+# addRow(limite_inferior, limite_superior, num_coeficientes, lista_indices, lista_valores)
+h.addRow(-highspy.kHighsInf, 1369900, len(g), [i for i in range(3, 19)], g)
+h.addRow(-highspy.kHighsInf, 1984000, len(k), [0, 1, 2, 19, 20, 21], k)
+h.addRow(-highspy.kHighsInf, 6000, len(fc), [i for i in range(22)], fc)
+
+# 4. Executar
+h.run()
+
+# 5. Extrair resultados
+sol = h.getSolution()
+if h.getModelStatus() == highspy.HighsModelStatus.kOptimal:
+    print(f"\nLucro Máximo: {h.getInfo().objective_function_value}")
+    for t in range(T):
+        print(f"x[{t}] = {sol.col_value[t]}")
+else:
+    print(f"Status do modelo: {h.getModelStatus()}") 

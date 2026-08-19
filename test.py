@@ -10,13 +10,14 @@ h.addVar(0.0, highspy.kHighsInf) # P2 (índice 1)
 
 # 2. Definir os coeficientes da função objetivo SEPARADAMENTE
 # changeColCost(índice_da_coluna, novo_custo)
-h.changeColCost(0, 1.0)
-h.changeColCost(1, 3.0)
+h.changeColCost(0, 4)
+h.changeColCost(1, 12)
 
 # 3. Adicionar as restrições
 # addRow(limite_inferior, limite_superior, num_coeficientes, lista_indices, lista_valores)
-h.addRow(-highspy.kHighsInf, 6.0, 2, [0, 1], [2.0, 3.0])  # 2x1 + 3x2 <= 6
-h.addRow(-highspy.kHighsInf, 1.0, 2, [0, 1], [-1.0, 1.0]) # -x1 + x2 <= 1
+h.addRow(-highspy.kHighsInf, 6.0, 2, [0, 1], [2, 1])  # 2x1 + 3x2 <= 6
+h.addRow(8, highspy.kHighsInf, 2, [0, 1], [1, 3]) # -x1 + x2 <= 1
+h.addRow(-highspy.kHighsInf, 4, 1, [0], [1]) # -x1 + x2 <= 1
 
 # 4. Executar
 h.run()
